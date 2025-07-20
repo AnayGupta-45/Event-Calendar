@@ -35,7 +35,7 @@ src/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/event-calendar.git
+git clone https://github.com/AnayGupta-45/Event-Calendar.git
 cd event-calendar
 
 2. Install Dependencies
