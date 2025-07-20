@@ -1,63 +1,46 @@
-# 📅 Event Calendar - React Application
+# Simple Event Calendar
 
-A modern, interactive event calendar built with React.js, featuring drag-and-drop functionality, recurring events, and localStorage persistence.
+A basic event calendar made with React that any student can understand and modify.
 
-## ✨ Features
+## Features
 
-- **Monthly Calendar View** with intuitive navigation
-- **Click-to-Add Events** on any day
-- **Drag & Drop** event rescheduling with @hello-pangea/dnd
-- **Recurring Events** (daily, weekly, monthly)
-- **Event Categories** with color coding
-- **Conflict Detection** with warnings
-- **LocalStorage Persistence**
-- **Responsive Design** for mobile and desktop
-- **React 19 Compatible** with modern dependencies
+- 📅 Monthly calendar view
+- ➕ Add events by clicking on dates
+- ✏️ Edit events by clicking on them
+- 🗑️ Delete events with confirmation
+- 🔄 Recurring events (daily, weekly, monthly, custom)
+- 🎯 Drag and drop to reschedule
+- ⚠️ Conflict detection and warnings
+- 🔍 Search events by title/description
+- 🏷️ Filter by category
+- 💾 Auto-save to localStorage
+- 📱 Mobile responsive
 
-## 🛠️ Tech Stack
+## Setup
 
-- **React.js 19** with functional components and hooks
-- **Vite** for fast development and building
-- **Tailwind CSS v3** for styling
-- **date-fns** for date manipulation
-- **@hello-pangea/dnd** for drag and drop functionality
-
-## 🚀 Getting Started
-
-1. Clone the repository:
-git clone https://github.com/AnayGupta-45/Event-Calendar.git
-cd event-calendar
-
-2. Install dependencies: 
+1. Clone and install:
 npm install
-
-3. Start the development server:
+2. Start development server:
 npm run dev
 
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+3. Open http://localhost:5173
 
-## 📖 Usage
+## How it works
 
-- **Add Events**: Click on any day to open the event creation form
-- **Edit Events**: Click on an existing event to edit
-- **Reschedule**: Drag and drop events to different dates
-- **Categories**: Organize events with color-coded categories
-- **Recurring Events**: Set up daily, weekly, or monthly recurring events
+- **Add Event**: Click any date to open the form
+- **Edit Event**: Click on an event to edit it
+- **Delete Event**: Hover over an event and click the × button
+- **Drag & Drop**: Drag events to different dates
+- **Search**: Use the search bar to find events
+- **Categories**: Filter events by work, personal, study, or other
 
-## 🏗️ Project Structure
+## Code Structure
 
-src/
-├── components/
-│ ├── Calendar/ # Calendar display components
-│ ├── Events/ # Event management components
-│ └── UI/ # Reusable UI components
-├── hooks/ # Custom React hooks
-└── utils/ # Utility functions
+- `Calendar.jsx` - Main calendar component
+- `EventForm.jsx` - Add/edit event form
+- `EventItem.jsx` - Individual event display
+- `SearchBar.jsx` - Search and filter component
+- `dateUtils.js` - Date helper functions
+- `storageUtils.js` - localStorage functions
 
-
-## 📄 License
-
-This project is licensed under the MIT License.
-EOF
-
-
+Simple code that students can easily understand and modify!
