@@ -1,46 +1,63 @@
-# Simple Event Calendar
+# 📆 Event Calendar App
 
-A basic event calendar made with React that any student can understand and modify.
+An interactive and dynamic calendar application built with **React** and **Tailwind CSS**, allowing users to create, update, delete, and manage events with ease. Supports color-coded events, drag-and-drop rescheduling, and recurring events.
 
-## Features
+---
 
-- 📅 Monthly calendar view
-- ➕ Add events by clicking on dates
-- ✏️ Edit events by clicking on them
-- 🗑️ Delete events with confirmation
-- 🔄 Recurring events (daily, weekly, monthly, custom)
-- 🎯 Drag and drop to reschedule
-- ⚠️ Conflict detection and warnings
-- 🔍 Search events by title/description
-- 🏷️ Filter by category
-- 💾 Auto-save to localStorage
-- 📱 Mobile responsive
+## 🔧 Features
 
-## Setup
+- ✅ Monthly calendar view
+- ✏️ Add, edit, and delete events
+- 🎨 Choose custom colors for events
+- 🔁 Recurring event support (Daily, Weekly, Monthly)
+- 🖱️ Drag-and-drop event rescheduling (optional)
+- 💡 Event modal with form and validation
+- 🧠 Category selection (optional)
+- 🌈 Tailwind-powered UI with smooth animations
 
-1. Clone and install:
+---
+
+## 📁 Project Structure
+
+src/
+├── components/
+│ ├── Calendar/
+│ ├── Events/
+│ └── UI/
+├── utils/
+├── App.jsx
+└── main.jsx
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/event-calendar.git
+cd event-calendar
+
+2. Install Dependencies
 npm install
-2. Start development server:
+
+3. Run the App
 npm run dev
 
-3. Open http://localhost:5173
+Open in browser at: http://localhost:5173
 
-## How it works
+🧠 Technologies Used
 
-- **Add Event**: Click any date to open the form
-- **Edit Event**: Click on an event to edit it
-- **Delete Event**: Hover over an event and click the × button
-- **Drag & Drop**: Drag events to different dates
-- **Search**: Use the search bar to find events
-- **Categories**: Filter events by work, personal, study, or other
+React.js
+Vite
+Tailwind CSS
+Date APIs (native JS)
+Local Storage (for data persistence)
 
-## Code Structure
+🙋‍♂️ Author
+Anay Gupta
 
-- `Calendar.jsx` - Main calendar component
-- `EventForm.jsx` - Add/edit event form
-- `EventItem.jsx` - Individual event display
-- `SearchBar.jsx` - Search and filter component
-- `dateUtils.js` - Date helper functions
-- `storageUtils.js` - localStorage functions
+📄 License
+This project is open-source and free to use under the MIT License.
 
-Simple code that students can easily understand and modify!
+------------------------------------------------------------------

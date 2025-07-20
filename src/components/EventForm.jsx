@@ -1,43 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { formatDate } from '../utils/dateUtils';
+import React, { useState, useEffect } from "react";
+import { formatDate } from "../utils/dateUtils";
 
 function EventForm({ event, selectedDate, onSave, onCancel }) {
   const [formData, setFormData] = useState({
-    title: '',
-    time: '',
-    description: '',
-    category: 'personal',
-    color: '',
-    recurrence: 'none',
-    customRecurrence: { interval: 1, type: 'weeks' }
+    title: "",
+    time: "",
+    description: "",
+    category: "personal",
+    color: "#3b82f6",
+    recurrence: "none",
   });
 
   useEffect(() => {
     if (event) {
       setFormData({
-        title: event.title || '',
-        time: event.time || '',
-        description: event.description || '',
-        category: event.category || 'personal',
-        color: event.color || '',
-        recurrence: event.recurrence || 'none',
-        customRecurrence: event.customRecurrence || { interval: 1, type: 'weeks' }
+        title: event.title || "",
+        time: event.time || "",
+        description: event.description || "",
+        category: event.category || "personal",
+        color: event.color || "#3b82f6",
+        recurrence: event.recurrence || "none",
       });
     }
   }, [event]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if (!formData.title.trim()) {
-      alert('Please enter an event title');
-      return;
-    }
+    if (!formData.title.trim()) return alert("Enter a title");
 
     const eventData = {
       id: event?.id || Date.now().toString(),
       ...formData,
-      date: selectedDate ? formatDate(selectedDate) : event?.date
+      date: selectedDate ? formatDate(selectedDate) : event?.date,
     };
 
     onSave(eventData);
@@ -45,171 +39,112 @@ function EventForm({ event, selectedDate, onSave, onCancel }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCustomRecurrenceChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      customRecurrence: {
-        ...prev.customRecurrence,
-        [field]: value
-      }
-    }));
-  };
+  const presetColors = [
+    { label: "Blue", value: "#3b82f6" },
+    { label: "Green", value: "#10b981" },
+    { label: "Red", value: "#ef4444" },
+    { label: "Purple", value: "#8b5cf6" },
+  ];
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2 className="text-xl font-bold mb-4">
-          {event ? 'Edit Event' : 'Add New Event'}
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-xl w-full max-w-md shadow-xl">
+        <h2 className="text-lg font-semibold mb-4 text-blue-600">
+          {event ? "Edit Event" : "New Event"}
         </h2>
 
         {selectedDate && (
-          <div className="bg-green-50 p-3 rounded-lg mb-4">
-            <p className="text-green-800">
-              Date: {selectedDate.toLocaleDateString()}
-            </p>
+          <div className="text-sm mb-4 text-gray-700">
+            Date: <strong>{selectedDate.toLocaleDateString()}</strong>
           </div>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Event Title *
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="Enter event title"
-              required
-            />
-          </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Event Title"
+            required
+          />
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Time
-            </label>
-            <input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              className="form-input"
-            />
-          </div>
+          <input
+            type="time"
+            name="time"
+            value={formData.time}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Description
-            </label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="form-input"
-              rows="3"
-              placeholder="Event description..."
-            />
-          </div>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Description"
+            rows="3"
+          />
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Category
-              </label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="form-input"
-              >
-                <option value="work">Work</option>
-                <option value="personal">Personal</option>
-                <option value="study">Study</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="study">Study</option>
+            <option value="other">Other</option>
+          </select>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Color
-              </label>
-              <input
-                type="color"
-                name="color"
-                value={formData.color}
-                onChange={handleChange}
-                className="form-input h-10 cursor-pointer"
-              />
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              Repeat
-            </label>
-            <select
-              name="recurrence"
-              value={formData.recurrence}
-              onChange={handleChange}
-              className="form-input"
-            >
-              <option value="none">No repeat</option>
-              <option value="daily">Daily</option>
-              <option value="weekly">Weekly</option>
-              <option value="monthly">Monthly</option>
-              <option value="custom">Custom</option>
-            </select>
-          </div>
-
-          {formData.recurrence === 'custom' && (
-            <div className="mb-4 bg-gray-50 p-3 rounded-lg">
-              <label className="block text-sm font-medium mb-2">
-                Custom Repeat Pattern
-              </label>
-              <div className="flex gap-2">
-                <span className="py-2">Every</span>
+          <div className="flex gap-3 items-center">
+            {presetColors.map((color) => (
+              <label key={color.value} className="flex items-center gap-1">
                 <input
-                  type="number"
-                  min="1"
-                  max="52"
-                  value={formData.customRecurrence.interval}
-                  onChange={(e) => handleCustomRecurrenceChange('interval', parseInt(e.target.value))}
-                  className="w-16 px-2 py-1 border rounded"
+                  type="radio"
+                  name="color"
+                  value={color.value}
+                  checked={formData.color === color.value}
+                  onChange={handleChange}
                 />
-                <select
-                  value={formData.customRecurrence.type}
-                  onChange={(e) => handleCustomRecurrenceChange('type', e.target.value)}
-                  className="px-2 py-1 border rounded"
-                >
-                  <option value="days">Days</option>
-                  <option value="weeks">Weeks</option>
-                  <option value="months">Months</option>
-                </select>
-              </div>
-            </div>
-          )}
+                <span
+                  className="w-5 h-5 rounded-full inline-block"
+                  style={{ backgroundColor: color.value }}
+                ></span>
+              </label>
+            ))}
+          </div>
 
-          <div className="flex gap-3 justify-end">
+          <select
+            name="recurrence"
+            value={formData.recurrence}
+            onChange={handleChange}
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            <option value="none">No Repeat</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+
+          <div className="flex justify-end gap-3 pt-2">
             <button
               type="button"
               onClick={onCancel}
-              className="btn-secondary"
+              className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="btn-primary"
+              className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
             >
-              {event ? 'Update Event' : 'Add Event'}
+              {event ? "Update" : "Add"}
             </button>
           </div>
         </form>

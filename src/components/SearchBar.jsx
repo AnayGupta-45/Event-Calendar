@@ -1,16 +1,21 @@
-import React from 'react';
+import React from "react";
 
-function SearchBar({ searchTerm, onSearch, selectedCategory, onCategoryChange }) {
+function SearchBar({
+  searchTerm,
+  onSearch,
+  selectedCategory,
+  onCategoryChange,
+}) {
   const categories = [
-    { value: '', label: 'All Categories' },
-    { value: 'work', label: 'Work' },
-    { value: 'personal', label: 'Personal' },
-    { value: 'study', label: 'Study' },
-    { value: 'other', label: 'Other' }
+    { value: "", label: "All Categories" },
+    { value: "work", label: "Work" },
+    { value: "personal", label: "Personal" },
+    { value: "study", label: "Study" },
+    { value: "other", label: "Other" },
   ];
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md mb-6">
+    <div className="bg-white rounded-xl p-4 mb-5 shadow-sm">
       <div className="flex gap-4 flex-col sm:flex-row">
         <div className="flex-1">
           <input
@@ -18,17 +23,17 @@ function SearchBar({ searchTerm, onSearch, selectedCategory, onCategoryChange })
             placeholder="Search events..."
             value={searchTerm}
             onChange={(e) => onSearch(e.target.value)}
-            className="form-input"
+            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
           />
         </div>
-        
+
         <div>
           <select
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
-            className="form-input"
+            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
           >
-            {categories.map(cat => (
+            {categories.map((cat) => (
               <option key={cat.value} value={cat.value}>
                 {cat.label}
               </option>
