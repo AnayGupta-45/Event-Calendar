@@ -186,26 +186,36 @@ function Calendar() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-5 bg-gray-50 min-h-screen">
-      <header className="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-6 rounded-2xl mb-4 text-center">
-        <h1 className="text-3xl font-bold">📅 My Calendar</h1>
+    <div className="max-w-6xl mx-auto p-5 bg-[#f9f7f3] min-h-screen font-sans">
+      <header
+        className="bg-white border-2 border-blue-300 shadow-md p-6 rounded-xl mb-4 text-center"
+        style={{ fontFamily: "'Comic Sans MS', 'Comic Sans', cursive" }}
+      >
+        <h1 className="text-3xl font-bold text-blue-700 tracking-wide">
+          📅 My Calendar
+        </h1>
       </header>
 
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 mb-5 text-blue-800 text-sm text-center">
+      <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-3 mb-5 text-yellow-900 text-sm text-center shadow">
         👆 Click to add | ↔️ Drag to reschedule | 🖱️ Double-click to delete
       </div>
 
-      <div className="flex justify-between items-center bg-white rounded-2xl p-5 shadow-sm mb-5">
+      <div className="flex justify-between items-center bg-white rounded-xl p-4 shadow border mb-5">
         <button
           onClick={() => setCurrentDate(goToPrevMonth(currentDate))}
-          className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600"
+          className="bg-blue-200 text-blue-900 px-4 py-2 rounded border border-blue-400 hover:bg-blue-300 transition"
         >
           ‹ Prev
         </button>
-        <h2 className="text-2xl font-bold">{formatMonth(currentDate)}</h2>
+        <h2
+          className="text-xl font-bold text-blue-800"
+          style={{ letterSpacing: "2px" }}
+        >
+          {formatMonth(currentDate)}
+        </h2>
         <button
           onClick={() => setCurrentDate(goToNextMonth(currentDate))}
-          className="bg-blue-500 text-white px-5 py-2 rounded-lg hover:bg-blue-600"
+          className="bg-blue-200 text-blue-900 px-4 py-2 rounded border border-blue-400 hover:bg-blue-300 transition"
         >
           Next ›
         </button>
@@ -218,12 +228,13 @@ function Calendar() {
         onCategoryChange={setSelectedCategory}
       />
 
-      <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <div className="grid grid-cols-7 bg-gray-50 border-b border-gray-200">
+      <div className="bg-white rounded-xl shadow border overflow-hidden">
+        <div className="grid grid-cols-7 bg-blue-100 border-b border-blue-200">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
             <div
               key={day}
-              className="p-4 text-center font-semibold text-gray-600 text-sm"
+              className="p-3 text-center font-semibold text-blue-700 text-sm border-r last:border-r-0"
+              style={{ fontFamily: "'Comic Sans MS', cursive" }}
             >
               {day}
             </div>
@@ -243,18 +254,21 @@ function Calendar() {
                       ref={provided.innerRef}
                       {...provided.droppableProps}
                       className={`
-                        min-h-[120px] p-2 border-r border-b relative
+                        min-h-[100px] p-2 border-r border-b border-gray-300 relative
                         ${
                           day.isToday
-                            ? "bg-blue-500 text-white"
-                            : "bg-white hover:bg-gray-50"
+                            ? "bg-blue-100 border-2 border-blue-400"
+                            : "bg-white"
                         }
-                        ${!day.isCurrentMonth ? "bg-gray-50 text-gray-400" : ""}
+                        ${
+                          !day.isCurrentMonth ? "bg-gray-100 text-gray-400" : ""
+                        }
                         ${
                           snapshot.isDraggingOver
-                            ? "bg-blue-50 border-blue-400 border-2 border-dashed"
+                            ? "bg-yellow-100 border-yellow-400 border-2"
                             : ""
                         }
+                        transition
                       `}
                       onClick={(e) => {
                         if (
@@ -267,8 +281,9 @@ function Calendar() {
                     >
                       <div
                         className={`day-number font-medium mb-1 ${
-                          day.isToday ? "text-white font-bold" : ""
+                          day.isToday ? "text-blue-700 font-bold" : ""
                         }`}
+                        style={{ fontFamily: "'Comic Sans MS', cursive" }}
                       >
                         {day.date.getDate()}
                       </div>
@@ -319,16 +334,21 @@ function Calendar() {
       </div>
 
       {showOptions && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-xl w-full max-w-md">
-            <h3 className="text-lg font-bold mb-4">Choose Action</h3>
-            <p className="text-gray-600 mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl w-full max-w-md border-2 border-blue-300 shadow-lg">
+            <h3
+              className="text-lg font-bold mb-4 text-blue-700"
+              style={{ fontFamily: "'Comic Sans MS', cursive" }}
+            >
+              Choose Action
+            </h3>
+            <p className="text-gray-700 mb-4">
               {eventsOnSelectedDay.length} event(s) on this day. What would you
               like to do?
             </p>
             <button
               onClick={handleAddNewEvent}
-              className="w-full bg-blue-500 text-white py-2 rounded-lg mb-3"
+              className="w-full bg-blue-200 text-blue-900 py-2 rounded border border-blue-400 mb-3 hover:bg-blue-300"
             >
               Add New
             </button>
@@ -336,14 +356,14 @@ function Calendar() {
               <button
                 key={event.id}
                 onClick={() => handleEventEdit(event)}
-                className="w-full text-left py-2 px-3 mb-2 border border-gray-200 rounded-lg hover:bg-gray-50"
+                className="w-full text-left py-2 px-3 mb-2 border border-gray-300 rounded hover:bg-gray-100"
               >
                 {event.title} {event.time && ` - ${event.time}`}
               </button>
             ))}
             <button
               onClick={() => setShowOptions(false)}
-              className="w-full bg-gray-400 text-white py-2 rounded-lg"
+              className="w-full bg-gray-200 text-gray-700 py-2 rounded border border-gray-400 hover:bg-gray-300"
             >
               Cancel
             </button>

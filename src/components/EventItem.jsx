@@ -12,9 +12,13 @@ function EventItem({ event, onDoubleClick }) {
 
   return (
     <div
-      className="text-white px-2 py-1 my-0.5 rounded-lg text-xs cursor-pointer transition-all duration-200 hover:scale-105 shadow-md truncate select-none"
+      className="text-white px-2 py-1 my-1 rounded border border-gray-300 text-xs cursor-pointer transition-all duration-150 shadow-sm truncate select-none"
       onDoubleClick={handleDoubleClick}
-      style={{ backgroundColor: bgColor }}
+      style={{
+        backgroundColor: bgColor,
+        fontFamily: "'Comic Sans MS', cursive",
+        boxShadow: "2px 2px 0 #d1d5db",
+      }}
     >
       <div className="truncate">
         {event.title}

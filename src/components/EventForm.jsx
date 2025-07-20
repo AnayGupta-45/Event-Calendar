@@ -50,25 +50,28 @@ function EventForm({ event, selectedDate, onSave, onCancel }) {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-xl w-full max-w-md shadow-xl">
-        <h2 className="text-lg font-semibold mb-4 text-blue-600">
+    <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+      <div className="bg-white p-5 rounded-lg w-full max-w-sm shadow border-2 border-blue-200">
+        <h2
+          className="text-xl font-bold mb-3 text-blue-700 text-center"
+          style={{ fontFamily: "'Comic Sans MS', cursive" }}
+        >
           {event ? "Edit Event" : "New Event"}
         </h2>
 
         {selectedDate && (
-          <div className="text-sm mb-4 text-gray-700">
+          <div className="text-sm mb-3 text-gray-700 text-center">
             Date: <strong>{selectedDate.toLocaleDateString()}</strong>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3">
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none"
             placeholder="Event Title"
             required
           />
@@ -78,23 +81,23 @@ function EventForm({ event, selectedDate, onSave, onCancel }) {
             name="time"
             value={formData.time}
             onChange={handleChange}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none"
           />
 
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none"
             placeholder="Description"
-            rows="3"
+            rows="2"
           />
 
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none"
           >
             <option value="work">Work</option>
             <option value="personal">Personal</option>
@@ -102,7 +105,7 @@ function EventForm({ event, selectedDate, onSave, onCancel }) {
             <option value="other">Other</option>
           </select>
 
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-2 items-center">
             {presetColors.map((color) => (
               <label key={color.value} className="flex items-center gap-1">
                 <input
@@ -113,7 +116,7 @@ function EventForm({ event, selectedDate, onSave, onCancel }) {
                   onChange={handleChange}
                 />
                 <span
-                  className="w-5 h-5 rounded-full inline-block"
+                  className="w-4 h-4 rounded-full inline-block border border-gray-400"
                   style={{ backgroundColor: color.value }}
                 ></span>
               </label>
@@ -124,7 +127,7 @@ function EventForm({ event, selectedDate, onSave, onCancel }) {
             name="recurrence"
             value={formData.recurrence}
             onChange={handleChange}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-400 rounded px-3 py-2 focus:outline-none"
           >
             <option value="none">No Repeat</option>
             <option value="daily">Daily</option>
@@ -132,17 +135,17 @@ function EventForm({ event, selectedDate, onSave, onCancel }) {
             <option value="monthly">Monthly</option>
           </select>
 
-          <div className="flex justify-end gap-3 pt-2">
+          <div className="flex justify-end gap-2 pt-2">
             <button
               type="button"
               onClick={onCancel}
-              className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded"
+              className="px-4 py-2 bg-gray-200 text-gray-700 rounded border border-gray-400 hover:bg-gray-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+              className="px-4 py-2 bg-blue-200 text-blue-900 rounded border border-blue-400 hover:bg-blue-300"
             >
               {event ? "Update" : "Add"}
             </button>

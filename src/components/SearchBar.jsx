@@ -15,15 +15,16 @@ function SearchBar({
   ];
 
   return (
-    <div className="bg-white rounded-xl p-4 mb-5 shadow-sm">
-      <div className="flex gap-4 flex-col sm:flex-row">
+    <div className="bg-white rounded-lg p-4 mb-5 shadow border border-blue-200">
+      <div className="flex gap-4 flex-col sm:flex-row items-center">
         <div className="flex-1">
           <input
             type="text"
             placeholder="Search events..."
             value={searchTerm}
             onChange={(e) => onSearch(e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full px-3 py-2 border border-gray-400 rounded focus:outline-none"
+            style={{ fontFamily: "'Comic Sans MS', cursive" }}
           />
         </div>
 
@@ -31,7 +32,8 @@ function SearchBar({
           <select
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full px-3 py-2 border border-gray-400 rounded focus:outline-none"
+            style={{ fontFamily: "'Comic Sans MS', cursive" }}
           >
             {categories.map((cat) => (
               <option key={cat.value} value={cat.value}>
